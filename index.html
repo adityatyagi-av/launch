@@ -3,20 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EcoSync — Launching 16 July, 12:00 PM</title>
-<meta name="description" content="EcoSync by Opernova launches 16 July 2026 at 12:00 PM. One network for the entire startup ecosystem.">
+<title>EcoSync — Portal Live · Phase 02 on 1 August</title>
+<meta name="description" content="ecosync.network is live. Mentors and incubators unlock on 1 August 2026 at 12:00 PM. One network for the entire startup ecosystem.">
+<link rel="icon" href="logo1.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
-    --blue:   #010086;
+    --blue:   #076EFF;
     --white:  #FFFFFF;
-    --bg:     #F6F7FC;
-    --tint:   rgba(1,0,134,.06);
-    --line:   rgba(1,0,134,.10);
-    --muted:  rgba(1,0,134,.55);
-    --shadow: 0 16px 40px -18px rgba(1,0,134,.25);
+    --bg:     #F4F8FF;
+    --ink:    #02306E;
+    --tint:   rgba(7,110,255,.07);
+    --line:   rgba(7,110,255,.14);
+    --muted:  rgba(2,48,110,.60);
+    --shadow: 0 16px 40px -18px rgba(7,110,255,.35);
     --font:   "Plus Jakarta Sans", sans-serif;
     --r-lg:   28px;
     --r-md:   20px;
@@ -27,10 +29,30 @@
   body{
     font-family:var(--font);
     background:var(--bg);
-    color:var(--blue);
+    color:var(--ink);
   }
 
+  /* ---- faint watermark words, like the ecosync.co homepage ---- */
+  .bg-words{
+    position:fixed; inset:0; overflow:hidden;
+    pointer-events:none; z-index:0;
+  }
+  .bg-words span{
+    position:absolute;
+    font-weight:800;
+    font-size:clamp(1.2rem, 2.2vw, 2rem);
+    letter-spacing:.06em;
+    color:rgba(7,110,255,.07);
+    white-space:nowrap;
+  }
+  .bg-words span:nth-child(1){ top:13%;   left:1%;   transform:rotate(-20deg); }
+  .bg-words span:nth-child(2){ top:34%;   right:-2%; transform:rotate(15deg); }
+  .bg-words span:nth-child(3){ bottom:22%;left:3%;   transform:rotate(12deg); }
+  .bg-words span:nth-child(4){ bottom:7%; right:5%;  transform:rotate(-14deg); }
+  .bg-words span:nth-child(5){ top:5%;    right:26%; transform:rotate(8deg); }
+
   .page{
+    position:relative; z-index:1;
     min-height:100dvh;
     max-width:1160px;
     margin:0 auto;
@@ -44,17 +66,15 @@
     display:flex; align-items:center; justify-content:space-between;
     padding:1.1rem 0 1rem;
   }
-  .wordmark{ line-height:1; }
-  .wordmark .name{
-    font-weight:800; font-size:1.4rem; letter-spacing:-.03em;
-    display:inline-flex; align-items:flex-start; gap:1px;
+  .logo-card{
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:.4rem .7rem;
+    box-shadow:0 6px 18px -10px rgba(7,110,255,.30);
+    display:inline-flex; align-items:center;
   }
-  .wordmark .name svg{ width:12px; height:12px; margin-top:2px; }
-  .wordmark .by{
-    display:block; margin-top:.25rem;
-    font-size:.6rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase;
-    color:var(--muted);
-  }
+  .logo-card img{ height:38px; display:block; }
   .nav-badge{
     display:inline-flex; align-items:center; gap:.55rem;
     background:var(--white);
@@ -62,7 +82,8 @@
     border-radius:999px;
     padding:.55rem 1.05rem;
     font-size:.76rem; font-weight:700;
-    box-shadow:0 6px 18px -10px rgba(1,0,134,.25);
+    color:var(--blue);
+    box-shadow:0 6px 18px -10px rgba(7,110,255,.30);
   }
   .nav-badge .dot{
     width:8px; height:8px; border-radius:50%;
@@ -73,6 +94,7 @@
 
   /* ================= hero panel ================= */
   .hero{
+    position:relative; overflow:hidden;
     background:var(--blue);
     color:var(--white);
     border-radius:var(--r-lg);
@@ -83,12 +105,43 @@
     gap:clamp(1.6rem,3.5vw,3.5rem);
     align-items:center;
   }
-  .eyebrow{
-    font-size:.68rem; font-weight:700; letter-spacing:.24em; text-transform:uppercase;
-    color:rgba(255,255,255,.65);
+  /* decorative rings & glow */
+  .hero::before{
+    content:""; position:absolute;
+    width:480px; height:480px; border-radius:50%;
+    border:1.5px solid rgba(255,255,255,.18);
+    top:-180px; right:-130px;
   }
+  .hero::after{
+    content:""; position:absolute;
+    width:380px; height:380px; border-radius:50%;
+    background:radial-gradient(circle, rgba(255,255,255,.14), transparent 70%);
+    bottom:-160px; left:-110px;
+  }
+  .hero-copy, .timer-col{ position:relative; z-index:1; }
+
+  /* --- live announcement pill --- */
+  .live-pill{
+    display:inline-flex; align-items:center; gap:.55rem;
+    background:var(--white);
+    color:var(--blue);
+    border-radius:999px;
+    padding:.5rem 1.15rem;
+    font-size:.78rem; font-weight:800;
+    text-decoration:none;
+    box-shadow:0 10px 24px -12px rgba(2,48,110,.55);
+    transition:transform .18s ease;
+  }
+  .live-pill:hover{ transform:translateY(-2px); }
+  .live-pill .dot{
+    width:8px; height:8px; border-radius:50%;
+    background:var(--blue);
+    animation:pulse 1.8s ease-in-out infinite;
+  }
+  .live-pill svg{ width:11px; height:11px; stroke:var(--blue); }
+
   h1{
-    margin-top:.9rem;
+    margin-top:1.1rem;
     font-size:clamp(1.7rem, 3.1vw, 2.7rem);
     line-height:1.16;
     letter-spacing:-.02em;
@@ -98,46 +151,79 @@
   h1 b{ font-weight:800; }
   .sub{
     margin-top:.9rem;
-    max-width:46ch;
+    max-width:48ch;
     font-size:clamp(.86rem,1.1vw,.96rem);
     line-height:1.65;
-    color:rgba(255,255,255,.72);
+    color:rgba(255,255,255,.85);
     font-weight:500;
   }
+  .sub a{ color:var(--white); font-weight:800; }
 
   .chips{
-    margin-top:1.5rem;
+    margin-top:1.3rem;
     display:flex; flex-wrap:wrap;
     gap:.8rem .85rem;
   }
   .chip{
     position:relative;
     display:inline-flex; align-items:center;
-    background:rgba(255,255,255,.10);
-    border:1px solid rgba(255,255,255,.28);
+    background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.35);
     border-radius:999px;
     padding:.45rem 1.05rem;
     font-size:.78rem; font-weight:700;
     color:var(--white);
   }
+  .chip.open{ background:var(--white); color:var(--blue); border-color:var(--white); }
   .chip .lock{
     position:absolute; top:-8px; right:-6px;
     width:17px; height:17px; border-radius:50%;
     background:var(--white);
     display:flex; align-items:center; justify-content:center;
-    box-shadow:0 3px 8px rgba(1,0,134,.35);
+    box-shadow:0 3px 8px rgba(2,48,110,.35);
   }
   .chip .lock svg{ width:8px; height:8px; stroke:var(--blue); }
+
+  /* --- join CTA --- */
+  .join{
+    margin-top:1.7rem;
+    display:inline-flex; align-items:center; gap:1.2rem;
+    background:var(--white);
+    color:var(--blue);
+    border-radius:999px;
+    padding:.5rem .55rem .5rem 1.5rem;
+    font-size:.95rem; font-weight:800;
+    text-decoration:none;
+    box-shadow:0 14px 30px -14px rgba(2,48,110,.55);
+    transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .join .circle{
+    width:42px; height:42px; border-radius:50%;
+    background:var(--blue);
+    display:flex; align-items:center; justify-content:center;
+    flex:none;
+  }
+  .join .circle svg{ width:16px; height:16px; stroke:var(--white); }
+  .join:hover{ transform:translateY(-2px); box-shadow:0 20px 36px -14px rgba(2,48,110,.65); }
 
   /* --- timer column --- */
   .timer-col{
     display:flex; flex-direction:column; align-items:center;
     text-align:center;
   }
+  .phase-tag{
+    display:inline-flex; align-items:center;
+    background:rgba(255,255,255,.14);
+    border:1px solid rgba(255,255,255,.35);
+    border-radius:999px;
+    padding:.4rem 1rem;
+    font-size:.7rem; font-weight:800; letter-spacing:.1em; text-transform:uppercase;
+    margin-bottom:1rem;
+  }
   .tminus{
-    font-size:.64rem; font-weight:700; letter-spacing:.26em; text-transform:uppercase;
-    color:rgba(255,255,255,.55);
-    margin-bottom:.85rem;
+    font-size:.62rem; font-weight:700; letter-spacing:.26em; text-transform:uppercase;
+    color:rgba(255,255,255,.7);
+    margin-bottom:.8rem;
   }
   .digits{
     display:grid;
@@ -149,7 +235,7 @@
     color:var(--blue);
     border-radius:var(--r-md);
     padding:1rem .6rem .8rem;
-    box-shadow:0 14px 30px -14px rgba(0,0,50,.5);
+    box-shadow:0 14px 30px -14px rgba(2,48,110,.5);
   }
   .value{
     font-size:clamp(1.8rem, 2.6vw, 2.5rem);
@@ -162,17 +248,23 @@
     font-size:.56rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase;
     color:var(--muted);
   }
+  .unlock-note{
+    margin-top:.9rem;
+    font-size:.72rem; font-weight:700; letter-spacing:.08em;
+    color:rgba(255,255,255,.75);
+  }
 
   .portal{
-    margin-top:1.4rem;
-    display:inline-flex; align-items:center; gap:1.3rem;
+    margin-top:1.2rem;
+    display:none;
+    align-items:center; gap:1.3rem;
     background:var(--white);
     color:var(--blue);
     border-radius:999px;
     padding:.5rem .55rem .5rem 1.4rem;
-    font-size:.92rem; font-weight:700;
+    font-size:.92rem; font-weight:800;
     text-decoration:none;
-    box-shadow:0 14px 30px -14px rgba(0,0,50,.5);
+    box-shadow:0 14px 30px -14px rgba(2,48,110,.5);
     transition:transform .18s ease, box-shadow .18s ease;
   }
   .portal .circle{
@@ -182,12 +274,10 @@
     flex:none;
   }
   .portal .circle svg{ width:15px; height:15px; stroke:var(--white); }
-  .portal.locked{ cursor:default; }
-  a.portal:hover{ transform:translateY(-2px); box-shadow:0 20px 36px -14px rgba(0,0,50,.6); }
-  .portal.live-cta{ display:none; }
-  .live-title{ display:none; font-size:clamp(1.5rem,2.4vw,2.1rem); font-weight:800; }
-  body.is-live .digits, body.is-live .tminus, body.is-live .portal.locked{ display:none; }
-  body.is-live .portal.live-cta{ display:inline-flex; }
+  .portal:hover{ transform:translateY(-2px); box-shadow:0 20px 36px -14px rgba(2,48,110,.6); }
+  .live-title{ display:none; font-size:clamp(1.4rem,2.4vw,2rem); font-weight:800; }
+  body.is-live .digits, body.is-live .tminus, body.is-live .unlock-note{ display:none; }
+  body.is-live .portal{ display:inline-flex; }
   body.is-live .live-title{ display:block; }
 
   /* ================= phased rollout ================= */
@@ -213,10 +303,12 @@
     border:1px solid var(--line);
     border-radius:var(--r-md);
     padding:1.15rem 1.2rem 1.2rem;
-    box-shadow:0 10px 26px -18px rgba(1,0,134,.30);
+    box-shadow:0 10px 26px -18px rgba(7,110,255,.35);
     transition:transform .18s ease, box-shadow .18s ease;
+    text-decoration:none; color:inherit;
+    display:block;
   }
-  .phase:hover{ transform:translateY(-4px); box-shadow:0 18px 34px -18px rgba(1,0,134,.40); }
+  .phase:hover{ transform:translateY(-4px); box-shadow:0 18px 34px -18px rgba(7,110,255,.45); }
   .phase .top{
     display:flex; align-items:center; justify-content:space-between; gap:.6rem;
   }
@@ -230,8 +322,24 @@
     padding:.3rem .75rem;
     font-size:.66rem; font-weight:800; letter-spacing:.08em; text-transform:uppercase;
   }
+  .phase .date.live{
+    background:var(--blue); color:var(--white); border-color:var(--blue);
+    display:inline-flex; align-items:center; gap:.4rem;
+  }
+  .phase .date.live::before{
+    content:""; width:6px; height:6px; border-radius:50%;
+    background:var(--white);
+    animation:pulse 1.8s ease-in-out infinite;
+  }
+  .phase .icon{
+    margin-top:.95rem;
+    width:40px; height:40px; border-radius:12px;
+    background:var(--tint);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .phase .icon svg{ width:19px; height:19px; stroke:var(--blue); }
   .phase h3{
-    margin-top:.85rem;
+    margin-top:.75rem;
     font-size:.95rem; font-weight:800; letter-spacing:-.01em;
     line-height:1.4;
   }
@@ -239,47 +347,64 @@
     margin-top:.4rem;
     font-size:.76rem; font-weight:500; color:var(--muted); line-height:1.55;
   }
-  /* phase 1 opens at launch — inverted card */
+  .phase .go{
+    margin-top:.7rem;
+    display:inline-flex; align-items:center; gap:.4rem;
+    font-size:.74rem; font-weight:800;
+    color:var(--blue);
+  }
+  .phase .go svg{ width:13px; height:13px; stroke:var(--blue); }
+  /* phase 2 unlocks next, inverted card */
   .phase.now{
     background:var(--blue);
     color:var(--white);
     border-color:var(--blue);
     box-shadow:var(--shadow);
   }
-  .phase.now .num{ color:rgba(255,255,255,.6); }
+  .phase.now .num{ color:rgba(255,255,255,.7); }
   .phase.now .date{ background:var(--white); color:var(--blue); border-color:var(--white); }
-  .phase.now p{ color:rgba(255,255,255,.7); }
+  .phase.now .icon{ background:rgba(255,255,255,.16); }
+  .phase.now .icon svg{ stroke:var(--white); }
+  .phase.now p{ color:rgba(255,255,255,.8); }
 
   /* ================= footer ================= */
   footer{
-    display:flex; justify-content:space-between; gap:1rem;
+    display:flex; justify-content:space-between; align-items:center; gap:1rem;
     padding:.9rem 0 1.1rem;
     font-size:.7rem; font-weight:600;
     color:var(--muted);
   }
+  footer a{
+    color:var(--blue); font-weight:800; text-decoration:none;
+  }
+  footer a:hover{ text-decoration:underline; }
 
   :focus-visible{ outline:2px solid var(--blue); outline-offset:3px; border-radius:6px; }
 
   /* ================= short desktop screens ================= */
-  @media (min-width:981px) and (max-height:800px){
+  @media (min-width:981px) and (max-height:820px){
     nav{ padding:.8rem 0 .7rem; }
-    .hero{ padding:1.5rem 2.2rem; }
-    h1{ font-size:1.8rem; }
-    .sub{ font-size:.84rem; margin-top:.6rem; }
-    .chips{ margin-top:1rem; }
+    .logo-card img{ height:32px; }
+    .hero{ padding:1.4rem 2.2rem; }
+    h1{ font-size:1.75rem; margin-top:.9rem; }
+    .sub{ font-size:.83rem; margin-top:.6rem; }
+    .chips{ margin-top:.9rem; }
+    .join{ margin-top:1.1rem; font-size:.88rem; }
+    .join .circle{ width:36px; height:36px; }
     .value{ font-size:1.8rem; }
     .unit{ padding:.8rem .5rem .65rem; }
-    .portal{ margin-top:1rem; font-size:.85rem; padding:.4rem .5rem .4rem 1.2rem; }
-    .portal .circle{ width:36px; height:36px; }
-    .coming{ padding:1.1rem 0 .3rem; }
+    .unlock-note{ margin-top:.7rem; }
+    .coming{ padding:1rem 0 .3rem; }
     .coming-head{ margin-bottom:.7rem; }
-    .phase{ padding:.95rem 1.1rem 1rem; }
+    .phase{ padding:.9rem 1.1rem .95rem; }
+    .phase .icon{ margin-top:.7rem; width:34px; height:34px; }
     .phase p{ font-size:.72rem; }
     footer{ padding:.6rem 0 .8rem; }
   }
 
   /* ================= mobile / tablet ================= */
   @media (max-width:980px){
+    .bg-words{ display:none; }
     .hero{ grid-template-columns:1fr; text-align:center; }
     .hero-copy h1, .hero-copy .sub{ margin-left:auto; margin-right:auto; }
     .chips{ justify-content:center; }
@@ -287,64 +412,82 @@
     .coming-head{ flex-direction:column; gap:.25rem; }
   }
   @media (max-width:560px){
+    .logo-card img{ height:30px; }
     .nav-badge{ font-size:.66rem; padding:.5rem .8rem; }
     .digits{ grid-template-columns:repeat(2, 1fr); width:100%; max-width:320px; }
   }
   @media (prefers-reduced-motion:reduce){
-    .nav-badge .dot{ animation:none; }
-    .phase, a.portal{ transition:none; }
+    .nav-badge .dot, .live-pill .dot, .phase .date.live::before{ animation:none; }
+    .phase, .join, .portal, .live-pill{ transition:none; }
   }
 </style>
 </head>
 <body>
+
+<div class="bg-words" aria-hidden="true">
+  <span>Mentor Finder</span>
+  <span>Investor Portal</span>
+  <span>Accelerator Programs</span>
+  <span>Pitch Deck</span>
+  <span>Incubator Hub</span>
+</div>
+
 <div class="page">
 
   <nav>
-    <div class="wordmark">
-      <span class="name">EcoSync<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
-      <span class="by">By Opernova</span>
-    </div>
-    <div class="nav-badge"><span class="dot" aria-hidden="true"></span>Launching 16 July · 12:00 PM</div>
+    <span class="logo-card"><img src="logo1.jpg" alt="EcoSync by Opernova"></span>
+    <div class="nav-badge"><span class="dot" aria-hidden="true"></span>Phase 02 · 1 August · 12:00 PM</div>
   </nav>
 
   <div class="main">
 
     <section class="hero">
       <div class="hero-copy">
-        <p class="eyebrow">Launching Soon</p>
+        <a class="live-pill" href="https://www.ecosync.network/">
+          <span class="dot" aria-hidden="true"></span>
+          ecosync.network is now LIVE
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="3" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+        </a>
 
         <h1>One network for the <b>entire startup ecosystem</b></h1>
 
-        <p class="sub">Startups, students, professionals, mentors, incubators, investors —
-        everyone it takes to build, together on one platform with role-specific workspaces.</p>
+        <p class="sub">The portal is live. Startups, students and professionals are already
+        building profiles, pages and communities on
+        <a href="https://www.ecosync.network/">ecosync.network</a>. Mentors and incubators
+        unlock on 1 August, investors on 25 August.</p>
 
         <div class="chips">
-          <span class="chip">Startup<span class="lock"><svg viewBox="0 0 24 24" fill="none" stroke-width="3"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span></span>
+          <span class="chip open">Startup</span>
+          <span class="chip open">Student</span>
+          <span class="chip open">Professional</span>
           <span class="chip">Mentor<span class="lock"><svg viewBox="0 0 24 24" fill="none" stroke-width="3"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span></span>
-          <span class="chip">Investor<span class="lock"><svg viewBox="0 0 24 24" fill="none" stroke-width="3"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span></span>
           <span class="chip">Incubator<span class="lock"><svg viewBox="0 0 24 24" fill="none" stroke-width="3"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span></span>
-          <span class="chip">Freelancer<span class="lock"><svg viewBox="0 0 24 24" fill="none" stroke-width="3"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span></span>
+          <span class="chip">Investor<span class="lock"><svg viewBox="0 0 24 24" fill="none" stroke-width="3"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span></span>
         </div>
+
+        <a class="join" href="https://www.ecosync.network/">
+          Join the Portal Now
+          <span class="circle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.6"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+        </a>
       </div>
 
       <div class="timer-col">
+        <span class="phase-tag">Phase 02 · Mentors &amp; Incubators</span>
+
         <p class="tminus">Unlocking in</p>
 
-        <div class="digits" role="timer" aria-label="Countdown to launch">
+        <div class="digits" role="timer" aria-label="Countdown to Phase 2">
           <div class="unit"><div class="value" id="d">00</div><span class="label">Days</span></div>
           <div class="unit"><div class="value" id="h">00</div><span class="label">Hours</span></div>
           <div class="unit"><div class="value" id="m">00</div><span class="label">Minutes</span></div>
           <div class="unit"><div class="value" id="s">00</div><span class="label">Seconds</span></div>
         </div>
 
-        <p class="live-title">We're live. Welcome in.</p>
+        <p class="unlock-note">1 August · 12:00 PM</p>
 
-        <span class="portal locked">
-          Portal unlocks at launch
-          <span class="circle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span>
-        </span>
+        <p class="live-title">Mentors &amp; incubators are in.</p>
 
-        <a class="portal live-cta" href="https://ecosync.network/feed">
+        <a class="portal" href="https://www.ecosync.network/">
           Access Your Portal
           <span class="circle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.6"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
         </a>
@@ -358,22 +501,26 @@
       </div>
 
       <div class="phases">
-        <div class="phase now">
-          <div class="top"><span class="num">Phase 01</span><span class="date">16 July</span></div>
+        <a class="phase" href="https://www.ecosync.network/">
+          <div class="top"><span class="num">Phase 01</span><span class="date live">Live Now</span></div>
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg></div>
           <h3>Startups · Students · Pages · Professionals</h3>
-          <p>Doors open at 12:00 PM. Create your profile, build your page, and start connecting.</p>
-        </div>
+          <p>Doors are open. Create your profile, build your page, and start connecting.</p>
+          <span class="go">Join now <svg viewBox="0 0 24 24" fill="none" stroke-width="2.6"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+        </a>
 
-        <div class="phase">
+        <div class="phase now">
           <div class="top"><span class="num">Phase 02</span><span class="date">1 August</span></div>
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="12" cy="8" r="6"/><path d="M15.5 13 17 22l-5-3-5 3 1.5-9"/></svg></div>
           <h3>Mentors · Incubators</h3>
-          <p>Guidance joins the network — mentor workspaces and incubation programs open up.</p>
+          <p>Unlocking next. Mentor workspaces and incubation programs open at 12:00 PM.</p>
         </div>
 
         <div class="phase">
           <div class="top"><span class="num">Phase 03</span><span class="date">25 August</span></div>
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg></div>
           <h3>Investors</h3>
-          <p>Capital arrives — pitch angels and VC partners actively looking for their next bet.</p>
+          <p>Capital arrives. Pitch angels and VC partners actively looking for their next bet.</p>
         </div>
       </div>
     </section>
@@ -381,15 +528,15 @@
   </div>
 
   <footer>
-    <span>© 2026 EcoSync by Opernova</span>
-    <span>ecosync.network</span>
+    <span>© 2026 EcoSync by Opernova · ecosync.co</span>
+    <a href="https://www.ecosync.network/">Portal live at ecosync.network ↗</a>
   </footer>
 
 </div>
 
 <script>
-  // Launch: 16 July 2026, 12:00 PM (visitor's local time)
-  const TARGET = new Date(2026, 6, 16, 12, 0, 0);
+  // Phase 2: 1 August 2026, 12:00 PM (visitor's local time)
+  const TARGET = new Date(2026, 7, 1, 12, 0, 0);
 
   const el = {
     d: document.getElementById('d'),
